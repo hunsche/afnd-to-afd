@@ -1,0 +1,21 @@
+.center {
+    text-align: center;
+}
+
+.text-center {
+    margin: auto;
+}
+
+.margin-in-bottom {
+    margin-bottom: 2%;
+}
+
+.margin-in-top {
+    margin-top: 1%;
+}
+
+.provisional{
+    margin: auto;
+    width: 30%;
+    border: 1px solid green;
+}
