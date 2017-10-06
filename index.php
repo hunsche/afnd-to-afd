@@ -30,13 +30,14 @@
         <form class="container">
             <div class="row">
                 <div class="col">
-                    <input type="number" class="form-control" id="col" placeholder="Column">
+                    <input type="number" class="form-control" id="row" placeholder="Row">
                 </div>
+
                 <div class="text-center">
                     <label for="x">x</label>
                 </div>
                 <div class="col">
-                    <input type="number" class="form-control" id="row" placeholder="Row">
+                    <input type="number" class="form-control" id="col" placeholder="Column">
                 </div>
             </div>
             <div class="row margin-in-top">

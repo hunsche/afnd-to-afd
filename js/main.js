@@ -114,7 +114,10 @@ function createAFD(input, cartesian) {
     let product = {};
     for (let itemHash in hash) {
       for (let collumn in input[hash[itemHash]]) {
-        if(String(collumn) == 'output') continue;
+        if(String(collumn) == 'output') {
+          product[output] = false;
+          continue;
+        }
 
         if (!product[collumn]) product[collumn] = "";
         else product[collumn] += ", ";
