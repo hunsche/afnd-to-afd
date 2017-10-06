@@ -10,10 +10,29 @@ function main() {
   let cartesian = cartesianProduct(input);
   let output = createAFD(input, cartesian);
   removeNotQuoted(output);
-  console.log(output);
-  // removeInacessible(output);
+  addedOutput(input, output);
+  removeInacessible(output);
 
   populateAFD(output);
+}
+
+function addedOutput(input, output) {
+  let outputList = {};
+  for (let item in input) {
+    outputList[item] = input[item]["output"] == true;
+  }
+  
+  for (let item in output) {
+    output[item]["output"] = quotedBroken(item, outputList);
+  }
+}
+
+function quotedBroken(key, outputList) {
+  let array = getHash(key);
+  for (var index in array) {
+    if (outputList[array[index]]) return true;
+  }
+  return false;
 }
 
 function generate() {
@@ -23,7 +42,6 @@ function generate() {
 
   rowCount = document.getElementById("row").value;
   colCount = document.getElementById("col").value;
-  console.log(colCount);
   let $row = $("<tr>");
   $table.append($row);
   $row.append($("<td>").text("Output"));
@@ -74,10 +92,19 @@ function populateAFD(output) {
   $table.append($line);
 
   for (let row in output) {
+    if (String(row) == '-') continue;
+    let chkHtml = "";
     $line = $("<tr>");
-    $table.append($line);
-    $line.append($("<td>").text(row));
     for (let col in output[row]) {
+      if (String(col) == "output") {
+        if (output[row][col])
+          chkHtml = '<input type="checkbox" onclick="return false;" checked>';
+        else chkHtml = '<input type="checkbox" onclick="return false;">';
+        $line.append($("<td>").html(chkHtml));
+        $table.append($line);
+        $line.append($("<td>").text(row));
+        continue;
+      }
       $line.append($("<td>").text(output[row][col]));
     }
   }
@@ -114,8 +141,8 @@ function createAFD(input, cartesian) {
     let product = {};
     for (let itemHash in hash) {
       for (let collumn in input[hash[itemHash]]) {
-        if(String(collumn) == 'output') {
-          product[output] = false;
+        if (String(collumn) == "output") {
+          product["output"] = false;
           continue;
         }
 
@@ -128,7 +155,6 @@ function createAFD(input, cartesian) {
           product[collumn] += "-";
         }
         product[collumn] = concatDefault(getHash(product[collumn]));
-        console.log(product);
         output[cartesian[item]] = product;
         productForVoid[collumn] = "-";
       }
@@ -153,6 +179,7 @@ function concatDefault(array) {
 function isQuoted(hashList, element) {
   for (let itemLine in hashList) {
     for (let itemColumn in hashList[itemLine]) {
+      if (String(itemColumn) == "output") continue;
       if (String(getHash(hashList[itemLine][itemColumn])) == String(element)) {
         return true;
       }
