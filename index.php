@@ -48,26 +48,31 @@
             <table id="afndTable" class="table table-inverse table-bordered">
                 <tbody>
                     <tr>
+                        <td>Output</td>
                         <td>φ</td>
                         <td>a</td>
                         <td>b</td>
                     </tr>
                     <tr>
+                        <td><input type="checkbox"></td>
                         <td>q0</td>
                         <td>q0, q1</td>
                         <td>q0</td>
                     </tr>
                     <tr>
+                        <td><input type="checkbox"></td>
                         <td>q1</td>
                         <td>-</td>
                         <td>q2</td>
                     </tr>
                     <tr>
+                        <td><input type="checkbox"></td>
                         <td>q2</td>
                         <td>-</td>
                         <td>q3</td>
                     </tr>
                     <tr>
+                        <td><input type="checkbox" checked></td>
                         <td>q3</td>
                         <td>-</td>
                         <td>-</td>
@@ -85,26 +90,31 @@
         <table id="afdTable" class="table table-inverse table-bordered">
             <tbody>
                 <tr>
+                    <td>Output</td>
                     <td>φ</td>
                     <td>a</td>
                     <td>b</td>
                 </tr>
                 <tr>
+                    <td><input type="checkbox" onclick="return false;"></td>
                     <td>q0</td>
                     <td>q0, q1</td>
                     <td>q0</td>
                 </tr>
                 <tr>
+                    <td><input type="checkbox" onclick="return false;"></td>
                     <td>q0, q1</td>
                     <td>q0, q1</td>
                     <td>q0, q2</td>
                 </tr>
                 <tr>
+                    <td><input type="checkbox" onclick="return false;"></td>
                     <td>q0, q2</td>
                     <td>q0, q1</td>
                     <td>q0, q3</td>
                 </tr>
                 <tr>
+                    <td><input type="checkbox" checked onclick="return false;"></td>
                     <td>q0, q3</td>
                     <td>q0, q1</td>
                     <td>q0</td>
