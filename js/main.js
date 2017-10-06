@@ -1,11 +1,11 @@
 function main() {
-  // let input = getInput();
-
-  let input = {
-    q0: { output: false, a: "q1, q2", b: "-" },
-    q1: { output: false, a: "q2", b: "q0, q2" },
-    q2: { output: true, a: "q2", b: "q0" }
-  };
+  let input = getInput();
+  console.log(input);
+  // let input = {
+  //   q0: { output: false, a: "q1, q2", b: "-" },
+  //   q1: { output: false, a: "q2", b: "q0, q2" },
+  //   q2: { output: true, a: "q2", b: "q0" }
+  // };
 
   let cartesian = cartesianProduct(input);
   let output = createAFD(input, cartesian);
@@ -21,7 +21,7 @@ function addedOutput(input, output) {
   for (let item in input) {
     outputList[item] = input[item]["output"] == true;
   }
-  
+
   for (let item in output) {
     output[item]["output"] = quotedBroken(item, outputList);
   }
@@ -92,7 +92,7 @@ function populateAFD(output) {
   $table.append($line);
 
   for (let row in output) {
-    if (String(row) == '-') continue;
+    if (String(row) == "-") continue;
     let chkHtml = "";
     $line = $("<tr>");
     for (let col in output[row]) {
@@ -122,13 +122,13 @@ function getInput() {
     let $row = $rows[indexRow];
     let $col = $rows[indexRow].getElementsByTagName("td");
     let item = {};
-    for (let indexCol = 1; indexCol < $col.length; indexCol++) {
+    item['output'] = $col[0].getElementsByTagName("input")[0].checked;
+    for (let indexCol = 2; indexCol < $col.length; indexCol++) {
       let value = $col[indexCol].innerText;
       item[$rows[0].getElementsByTagName("td")[indexCol].innerText] = value;
     }
-    input[$col[0].innerText] = item;
+    input[$col[1].innerText] = item;
   }
-
   return input;
 }
 
@@ -194,7 +194,21 @@ function removeNotQuoted(output) {
   }
 }
 
-function removeInacessible(output) {}
+function removeInacessible(output) {
+  for (var key in output) {
+    let hasExit = false;
+    for (var col in output[key]) {
+      if (String(col) == "output") {
+        if (output[key][col]) {
+          hasExit = true;
+          break;
+        } else continue;
+      }
+      hasExit = !(output[key][col] == String(key));
+    }
+    if (!hasExit) delete output[key];
+  }
+}
 
 function cartesianProduct(input) {
   let size = getSize(input);
