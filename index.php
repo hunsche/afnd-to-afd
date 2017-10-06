@@ -93,7 +93,7 @@
             <tbody>
                 <tr>
                     <td>Output</td>
-                    <td>φ</td>
+                    <td>φ`</td>
                     <td>a</td>
                     <td>b</td>
                 </tr>

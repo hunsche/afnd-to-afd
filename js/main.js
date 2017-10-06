@@ -1,6 +1,5 @@
 function main() {
   let input = getInput();
-  console.log(input);
   // let input = {
   //   q0: { output: false, a: "q1, q2", b: "-" },
   //   q1: { output: false, a: "q2", b: "q0, q2" },
@@ -9,9 +8,13 @@ function main() {
 
   let cartesian = cartesianProduct(input);
   let output = createAFD(input, cartesian);
+  for (var key in output) {
+    console.log(key);
+    console.log(output[key]);
+  }
   removeNotQuoted(output);
   addedOutput(input, output);
-  removeInacessible(output);
+  // removeInacessible(output);
 
   populateAFD(output);
 }
@@ -85,8 +88,11 @@ function populateAFD(output) {
     index < $rows[0].getElementsByTagName("td").length;
     index++
   ) {
+    let value = $rows[0].getElementsByTagName("td")[index].innerText;
+    if (String(value) == 'φ')
+      value += '`';
     $line.append(
-      $("<td>").text($rows[0].getElementsByTagName("td")[index].innerText)
+      $("<td>").text(value)
     );
   }
   $table.append($line);
@@ -122,7 +128,7 @@ function getInput() {
     let $row = $rows[indexRow];
     let $col = $rows[indexRow].getElementsByTagName("td");
     let item = {};
-    item['output'] = $col[0].getElementsByTagName("input")[0].checked;
+    item["output"] = $col[0].getElementsByTagName("input")[0].checked;
     for (let indexCol = 2; indexCol < $col.length; indexCol++) {
       let value = $col[indexCol].innerText;
       item[$rows[0].getElementsByTagName("td")[indexCol].innerText] = value;
