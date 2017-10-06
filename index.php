@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>AFND to AFD</title>
+    <link rel="icon" href="img/favicon.ico" />
     <link rel="stylesheet" href="external/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="js/jquery.min.js"></script>
